@@ -62,7 +62,7 @@ public class SimpleDate {
         }
 
         if (week <= 0) {
-
+            calendar.set(Calendar.WEEK_OF_MONTH, 1);
             calendar.add(Calendar.WEEK_OF_YEAR, -1);
             setWeek(calendar.getActualMaximum(Calendar.WEEK_OF_MONTH));
         }
