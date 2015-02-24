@@ -191,15 +191,33 @@ public class SimpleDate {
         return calendar;
     }
 
-    public List<Integer> getCurrentWeekDays() {
-        List<Integer> result = new ArrayList<Integer>();
+    public List<Calendar> getCurrentWeekDays() {
+        List<Calendar> result = new ArrayList<Calendar>();
 
         Calendar calendar = toCalendar();
 
-        int firstDay = calendar.get(Calendar.DATE);
+        int mDay = calendar.get(Calendar.DATE);
 
         for (int i = 0; i < 7; i++) {
-            result.add(i + firstDay);
+            int totalDate = calendar.getActualMaximum(Calendar.DATE);
+            int day = i + calendar.get(Calendar.DATE);
+
+            if (day > totalDate) {
+                calendar.set(Calendar.DATE, 1);
+                calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+                calendar.set(Calendar.WEEK_OF_MONTH, 0);
+                calendar.add(Calendar.MONTH, 2);
+                mDay = 1;
+            }
+
+            int y = calendar.get(Calendar.YEAR);
+            int m = calendar.get(Calendar.MONTH) + 1;
+            day = mDay++;
+
+            Calendar saveCalendar = Calendar.getInstance();
+            saveCalendar.set(y, m, day);
+
+            result.add(saveCalendar);
         }
 
         return result;
