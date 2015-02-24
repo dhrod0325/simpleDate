@@ -14,4 +14,4 @@ for (SimpleDate.SimpleWeek week : simpleCalendar.getWeekList()) {
 ```
 
 ##Result
-![Result](/dhrod0325/simpleDate/screenshot.png)
+![Result](/dhrod0325/simpleDate/screenShot.png)
